@@ -252,7 +252,9 @@ def main() -> None:
     p(f"Путь к инерпретатору: {sys.executable}")
     p()
     up = UpdateValue()
-    up.update_inner_value()
+    s = """Метод заменяет несколько элементов в списке.\n           Список не меняется."""
+    p(s[:44])
+    p()
 
 
 if __name__ == '__main__':
