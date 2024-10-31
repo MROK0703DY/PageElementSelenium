@@ -49,7 +49,7 @@ def to_xlsx() -> None:
     df = pd.DataFrame(data)
 
     # Сохраняем данные в файл Excel
-    df.to_excel('данные.xlsx', index=False,
+    df.to_excel('C:\\pycharm\\PycharmProjects\\pycharm_library\\pycharm_library\\new\\данные.xlsx', index=False,
                 sheet_name='Список первой отчетности')
     p("""Файл записан""")
 

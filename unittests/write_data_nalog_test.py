@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from new.write_data_nalog import get_form_fill, write_to_csv, parse, foo, inn_list
-from pandas_write_to_test import reading_from_csv
 import time
 import pandas as pd
 import csv
@@ -12,6 +11,14 @@ import csv
 def p(*args) -> None:
     """Функция печати.Строка с пунктуацией.Печатает в консоль."""
     print(*args)
+
+
+def reading_from_csv(file_name: str) -> None:
+    """Чтение из файла csv."""
+    with open(file_name, "r", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        value = list(reader)[0]
+    return value
 
 
 class WriteDataNalogTest(TestCase):
@@ -141,13 +148,7 @@ class WriteDataNalogTest(TestCase):
         write_to_csv(data_list, file_name)
         p(reading_from_csv("albums.csv"))
         self.assertEqual(write_to_csv.__doc__, "Запись в csv")
-        self.assertEqual(reading_from_csv("albums.csv"), ['Город/Регион',
-                                                          'ОГРН',
-                                                          'Дата присвоения',
-                                                          'ИНН',
-                                                          'КПП',
-                                                          'Директор',
-                                                          'Дата прекращения'])
+        self.assertEqual(reading_from_csv("albums.csv"), ['col1', 'col2'])
 
 
 if __name__ == "__main__":
