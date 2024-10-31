@@ -110,13 +110,14 @@ class UpDateValueTest(TestCase):
     def test_remove_dups_dict1(self) -> None:
         """Удаление дубликатов из списка с повторяющимися элементами."""
         surv = [
-            {'id': 1, 'title': 'Кто убил Цезаря?', 'description': 'Убийца'},
-            {'id': 1, 'title': 'Кто убил Цезаря?', 'description': 'Убийца'},
-            {'id': 2, 'title': 'Сколько лет Йоге?', 'description': 'Вопрос про Йогу'},
-            {'id': 2, 'title': 'Сколько лет Йоге?', 'description': 'Вопрос про Йогу'}
+            {'id': 1, 'title': 'Цезарь', 'description': 'Убийца'},
+            {'id': 1, 'title': 'Цезарь', 'description': 'Убийца'},
+            {'id': 2, 'title': 5, 'description': 'Йога'},
+            {'id': 2, 'title': 5, 'description': 'Йога'}
             ]
 
-        expected_result = [{'description': 'Убийца', 'id': 1, 'title': 'Кто убил Цезаря?'}, {'description': 'Вопрос про Йогу', 'id': 2, 'title': 'Сколько лет Йоге?'}]
+        expected_result = [{'description': 'Йога', 'id': 2, 'title': 5},
+                           {'description': 'Убийца', 'id': 1, 'title': 'Цезарь'}]
         self.assertEqual(self.updater.remove_dups_dict1(surv), expected_result)
         self.assertEqual(UpdateValue.remove_dups_dict1.__doc__,
                          "удаление дубликатов в списке словарей.")

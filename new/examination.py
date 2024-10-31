@@ -6,7 +6,7 @@ from print_жирный_и_цветной_текст import Color
 
 
 number = "31 октября"
-time_hour = "05"
+time_hour = "08"
 day = "ЧТВ"
 
 
@@ -40,7 +40,7 @@ def get_date_two(number, time_hour, day) -> None:
     print(formatted_time)
     p()
     ft = formatted_time.split()
-    p(f"{Color.BOLD}{Color.GREEN} {ft[0]} {time_hour}{ft[1][2:]} {day}{Color.END}")
+    p(f"{Color.BOLD}{Color.GREEN}{number} {ft[0][6:]} {time_hour}{ft[1][2:]} {day}{Color.END}")
     p()
 
 
@@ -63,8 +63,8 @@ def get_date_three() -> None:
 def short_entry() -> None:
     """Вывод на печать текущей даты и времени."""
     a_time = dt.now().strftime('%a')
-    current_time = str(dt.now()).split()[1].split(("."))[0]
-    date = " ".join(["октября" if x == "10" else x for x in ((str(dt.now()).split())[0].split("-")[::-1])]) + " " + a_time
+    current_time = str(dt.now()).split()[1].split(("."))[0] + " " + a_time
+    date = " ".join(["октября" if x == "10" else x for x in ((str(dt.now()).split())[0].split("-")[::-1])])
     p(f"{Color.BOLD}{Color.RED}{date} {current_time}{Color.END}")
     p()
 
