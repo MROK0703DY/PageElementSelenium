@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 class HomePage:
     """Класс для работы со страницами сайта через selenium"""
+
     def __init__(self, driver: WebDriver):
         """Конструктор класса"""
         self.driver = driver

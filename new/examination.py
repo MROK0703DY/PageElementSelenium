@@ -6,7 +6,7 @@ from print_жирный_и_цветной_текст import Color
 
 
 number = "31 октября"
-time_hour = "08"
+time_hour = "14"
 day = "ЧТВ"
 
 
@@ -80,3 +80,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    p(sys.version)
