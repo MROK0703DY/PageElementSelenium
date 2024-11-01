@@ -5,16 +5,20 @@ from obrizan_dev.page_element import PageElement
 
 class HomePage:
     """Класс для работы со страницами сайта через selenium"""
+
     def __init__(self, driver: WebDriver):
         """Конструктор класса"""
         self.driver = driver
-        self.search_button = PageElement(self.driver, (By.CSS_SELECTOR,
-                                                       "button.btn-default"))
+        self.search_button = PageElement(
+            self.driver, (By.CSS_SELECTOR, "button.btn-default")
+        )
         self.search_field = PageElement(self.driver, (By.NAME, "search"))
-        self.shopping_cart = PageElement(self.driver, (By.CSS_SELECTOR,
-                                                       "button.btn-default"))
-        self.shopping_cart_menu = PageElement(self.driver, (By.LINK_TEXT,
-                                                            "Shopping Cart"))
+        self.shopping_cart = PageElement(
+            self.driver, (By.CSS_SELECTOR, "button.btn-default")
+        )
+        self.shopping_cart_menu = PageElement(
+            self.driver, (By.LINK_TEXT, "Shopping Cart")
+        )
 
     def open(self) -> None:
         """Открыть главную страницу"""

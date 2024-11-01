@@ -21,13 +21,13 @@ class PageElement:
 
     def _get_el(self) -> WebElement:
         """Возвращает WebElement по его локатору
-           Find element by its locator.
+        Find element by its locator.
         """
         return self.driver.find_element(*self.locator)
 
     def click(self) -> None:
         """Нажимает на элемент
-           Click on the element.
+        Click on the element.
         """
         self._get_el().click()
 

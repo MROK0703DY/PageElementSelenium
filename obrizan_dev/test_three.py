@@ -11,33 +11,24 @@ def p(*args) -> None:
     print(*args)
 
 
-def test() -> None:
-    """Открытие главной страницы и проверка на соответствие."""
+def test_two_move() -> None:
+    """Открываем главную страницу и проверяем на соответствие.
+    Переходим на страницу поиска и проверяем на соответствие."""
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     home_page = HomePage(driver)
     home_page.open()
 
     assert "MacBook" in driver.page_source, "Строка поиска не найдена"
-    time.sleep(5)
-    driver.quit()
-
-
-def test_search_home() -> None:
-    """Нажатие на кнопку поиска и проверка на соответствие."""
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    home_page = SearchPage(driver)
-    home_page.open()
+    time.sleep(3)
 
     home_page.set_search_query("samsung")
     home_page.click_search_button()
 
     assert "Search - samsung" in driver.page_source, "Samsung не найден"
+    assert "Samsung SyncMaster 941BW" in driver.page_source, "Samsung не найден"
     time.sleep(5)
     driver.quit()
 
-
-def test_search_page() -> None:
-    """Поиск по критериям."""
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     search_page = SearchPage(driver)
     search_page.open()
@@ -51,8 +42,8 @@ def test_search_page() -> None:
 
 
 def main() -> None:
-    """Основная функция.Точка входа в программу."""
-    test()
+    """Основная функуия. Точка входа."""
+    test_two_move()
     p("Тест окончен")
 
 
