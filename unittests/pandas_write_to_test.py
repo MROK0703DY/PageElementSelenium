@@ -40,8 +40,7 @@ class PandasWriteToTest(TestCase):
     def test_to_csv(self) -> None:
         """Тестирование функции to_csv. Запись в файл."""
         to_csv()
-        self.assertEqual(to_csv.__doc__, "Запись в csv.\
-                         Использование индексов. Создаем колонки.")
+        self.assertEqual(to_csv.__doc__, "Запись в csv. Использование индексов.Создаем колонки.")
         self.assertEqual(reading_from_csv("albums.csv"),
                          ['', 'album', 'release_year'])
 
@@ -50,8 +49,7 @@ class PandasWriteToTest(TestCase):
         to_xlsx()
         self.assertEqual(to_xlsx.__doc__, "Запись в xlsx")
         list_columns = ['Имя', 'Возраст', 'Город']
-        file_name = "C:\\pycharm\\PycharmProjects\\pycharm_library\
-            \\pycharm_library\\new\\данные.xlsx"
+        file_name = "C:\\pycharm\\PycharmProjects\\pycharm_library\\pycharm_library\\new\\данные.xlsx"
         self.assertEqual(reading_from_xlsx(file_name, list_columns), 'Анна')
 
 

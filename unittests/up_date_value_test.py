@@ -58,6 +58,95 @@ class UpDateValueTest(TestCase):
             up.update_inner_value()
         self.assertEqual("UpdateValue.update_inner_value() missing 3 required positional arguments: 'mutable_dict', 'keys_list', and 'value'", e.exception.args[0])
 
+    def test_replacing_items_in_a_list(self, a_list=[1, 2, 3], old_value=2,
+                                       new_value="two") -> None:
+        """Метод заменяет одно значение в списке на новое.Список не меняется."""
+        self.assertEqual(UpdateValue.replacing_items_in_a_list.__doc__,
+                         "Метод заменяет одно значение в списке на новое.Список не меняется.")
+        self.assertEqual([new_value if x == old_value else x for x in a_list], [1, 'two', 3])
+
+    def test_replacement_by_specific_indices_list(self, a_list=['хорошо', 'удовл', 'плохо', 'плохо', 'хорошо'], b_list=[1, 2, 3], value='отлично') -> None:
+        """Метод заменяет несколько элементов в списке на одно заданное
+                            значение по заданным индексам.
+                            Список не меняется."""
+        self.assertEqual(UpdateValue.replacement_by_specific_indices_list.__doc__[:60],
+                         """Метод заменяет несколько элементов в списке на одно заданное""")
+        self.assertEqual([value if idx in b_list else x for idx, x in enumerate(a_list)],
+                         ['хорошо', 'отлично', 'отлично', 'отлично', 'хорошо'])
+
+    def test_multiple_substitution_list(self, a_list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], a_dict={7: 'Семь', 2: 'Два', 10: 'Десять'}) -> None:
+        """Метод заменяет несколько элементов в списке.
+           Список не меняется."""
+        self.assertEqual(UpdateValue.multiple_substitution_list.__doc__,
+                         """Метод заменяет несколько элементов в списке.\n           Список не меняется.""")
+        self.assertEqual([a_dict.get(x, x) for x in a_list], [1, 'Два', 3, 4, 5, 6, 'Семь', 8, 9, 'Десять'])
+
+    def test_remove_dups(self) -> None:
+        """Удаление дубликатов из списка, сохраняя порядок."""
+        numbers = [1, 2, 3, 2, 1, 5, 6, 5, 5, 5, "sam", "sam", "pip", "pip"]
+        expected_result = [1, 2, 3, 5, 6, "sam", "pip"]
+        self.assertEqual(self.updater.remove_dups(numbers), expected_result)
+        self.assertEqual(UpdateValue.remove_dups.__doc__,
+                         """Удаление дубликатов из списка, сохраняя порядок.""")
+
+    def test_remove_dups_empty_list(self) -> None:
+        """Удаление дубликатов из пустого списка."""
+        numbers = []
+        expected_result = []
+        self.assertEqual(self.updater.remove_dups(numbers), expected_result)
+
+    def test_remove_dups_no_duplicates(self) -> None:
+        """Удаление дубликатов из списка без дубликатов."""
+        numbers = [1, 2, 3, 4, 5]
+        expected_result = [1, 2, 3, 4, 5]
+        self.assertEqual(self.updater.remove_dups(numbers), expected_result)
+
+    def test_remove_dups_all_duplicates(self) -> None:
+        """Удаление дубликатов из списка с повторяющимися элементами."""
+        numbers = [1, 1, 1, 1, 1]
+        expected_result = [1]
+        self.assertEqual(self.updater.remove_dups(numbers), expected_result)
+
+    def test_remove_dups_dict1(self) -> None:
+        """Удаление дубликатов из списка с повторяющимися элементами."""
+        surv = [
+            {'id': 1, 'title': 'Цезарь', 'description': 'Убийца'},
+            {'id': 1, 'title': 'Цезарь', 'description': 'Убийца'},
+            {'id': 2, 'title': 5, 'description': 'Йога'},
+            {'id': 2, 'title': 5, 'description': 'Йога'}
+            ]
+
+        expected_result = [{'description': 'Йога', 'id': 2, 'title': 5},
+                           {'description': 'Убийца', 'id': 1, 'title': 'Цезарь'}]
+        self.assertEqual(self.updater.remove_dups_dict1(surv), expected_result)
+        self.assertEqual(UpdateValue.remove_dups_dict1.__doc__,
+                         "удаление дубликатов в списке словарей.")
+
+    def test_creation_of_matrix(self) -> None:
+        """Создание матрицы."""
+        expected_result = [
+                            [0, 1, 2, 3, 4],
+                            [0, 1, 2, 3, 4],
+                            [0, 1, 2, 3, 4],
+                            [0, 1, 2, 3, 4],
+                            [0, 1, 2, 3, 4],
+                            [0, 1, 2, 3, 4]]
+        self.assertEqual(self.updater.creation_of_matrix(5, 6), expected_result)
+        self.assertEqual(UpdateValue.creation_of_matrix.__doc__,
+                         "Создание матрицы.")
+
+    def test_matrix_assembly(self) -> None:
+        """Сборка матрицы."""
+        matrix = [
+                    [0, 0, 0],
+                    [1, 1, 1],
+                    [2, 2, 2],
+                    ]
+        expected_result = [0, 0, 0, 1, 1, 1, 2, 2, 2]
+        self.assertEqual(self.updater.matrix_assembly(matrix), expected_result)
+        self.assertEqual(UpdateValue.matrix_assembly.__doc__,
+                         "Сборка матрицы.")
+
 
 if __name__ == "__main__":
     main()

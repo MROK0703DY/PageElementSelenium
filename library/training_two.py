@@ -17,7 +17,7 @@ def p(*args) -> None:
     print(*args)
 
 
-def run_test() -> None:
+def test_run() -> None:
     """Функция тестирования."""
     driver = webdriver.Chrome()
     driver.get("http://tutorialsninja.com/demo/")
@@ -43,7 +43,7 @@ def run_test() -> None:
 
 def main() -> None:
     """Главная функция исполнения.Точка входа в программу."""
-    run_test()
+    test_run()
     p("ok")
 
 
